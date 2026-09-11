@@ -1,0 +1,28 @@
+services:
+  postgres:
+    build:
+      context: ./docker
+    environment:
+      POSTGRES_DB: rsp
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Create .env from .env.example}
+      POSTGRES_INITDB_ARGS: >-
+        --encoding=UTF8
+        --locale=ru_RU.UTF-8
+        --auth-host=scram-sha-256
+        --auth-local=scram-sha-256
+      APP_DB_USER: ${APP_DB_USER:?Set APP_DB_USER in .env}
+      APP_DB_PASSWORD: ${APP_DB_PASSWORD:?Set APP_DB_PASSWORD in .env}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d rsp"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  postgres-data:

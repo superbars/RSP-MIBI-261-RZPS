@@ -1,0 +1,45 @@
+services:
+  postgres:
+    image: rsp-postgres:18
+    build:
+      context: ./db
+    env_file:
+      - ./.env
+    environment:
+      POSTGRES_DB: rsp
+      POSTGRES_USER: postgres
+      POSTGRES_INITDB_ARGS: >-
+        --encoding=UTF8
+        --locale=ru_RU.UTF-8
+        --auth-host=scram-sha-256
+        --auth-local=scram-sha-256
+    volumes:
+      # Начиная с PostgreSQL 18 volume монтируется уровнем выше PGDATA.
+      - postgres-data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d rsp"]
+      interval: 2s
+      timeout: 3s
+      retries: 15
+    restart: unless-stopped
+
+  pinger:
+    image: rsp-pinger:1.0.0
+    build:
+      context: ./app
+    env_file:
+      - ./.env
+    environment:
+      POLL_INTERVAL_SECONDS: ${POLL_INTERVAL_SECONDS:-300}
+      # Pinger не должен получать пароль администратора БД из общего env-файла.
+      POSTGRES_PASSWORD: ""
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - pinger-logs:/logs
+    restart: unless-stopped
+
+volumes:
+  postgres-data:
+  pinger-logs:

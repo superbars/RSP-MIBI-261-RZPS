@@ -18,12 +18,12 @@ SELECT VERSION();
 
 ## Структура
 
-- `compose.yaml` запускает PostgreSQL и публикует порт только на localhost;
-- `docker/Dockerfile` добавляет русскую локаль в образ PostgreSQL;
-- `docker/postgresql.conf` содержит настройки сервера;
-- `docker/init-user.sh` создаёт пользователя;
-- `app/config.toml` содержит параметры подключения;
-- `app/main.py` запрашивает логин и пароль и выводит версию сервера;
+- `compose.yaml` запускает PostgreSQL
+- `docker/Dockerfile` добавляет русскую локаль в образ PostgreSQL
+- `docker/postgresql.conf` содержит настройки сервера
+- `docker/init-user.sh` создаёт пользователя
+- `app/config.toml` содержит параметры подключения
+- `app/main.py` запрашивает логин и пароль и выводит версию сервера
 
 ## Quick start and reset
 
@@ -31,7 +31,7 @@ SELECT VERSION();
 ./run.sh
 ```
 
-Удалить контейнер вместе с данными и повторить полную инициализацию:
+Удалить контейнер вместе с вольюмом:
 
 ```bash
 docker compose down --volumes

@@ -1,14 +1,15 @@
-from __future__ import annotations
-
 import getpass
 import re
 import sys
 import tomllib
 from pathlib import Path
 from typing import TypedDict
+#import requests
 
-import psycopg
+import psycopg # For connetction to DB 
 from psycopg import sql
+
+from __future__ import annotations
 
 
 class DatabaseConfig(TypedDict):
@@ -24,7 +25,7 @@ LOGIN_PATTERN = re.compile(r"[A-Za-z_][A-Za-z0-9_]{0,62}\Z")
 
 
 def load_config(path: Path = CONFIG_PATH) -> DatabaseConfig:
-    """Прочитать и проверить только разрешённые параметры подключения."""
+    """Читаем и используем, только определенные параметры подключения (из томл файла)"""
     with path.open("rb") as config_file:
         raw_config = tomllib.load(config_file)
 
@@ -47,17 +48,17 @@ def load_config(path: Path = CONFIG_PATH) -> DatabaseConfig:
     connect_timeout = raw_config["connect_timeout"]
 
     if not isinstance(host, str) or not host.strip():
-        raise ValueError("host должен быть непустой строкой")
+        raise ValueError("host must be not empty")
     if not isinstance(port, int) or isinstance(port, bool) or not 1 <= port <= 65535:
-        raise ValueError("port должен быть целым числом от 1 до 65535")
+        raise ValueError("port troubles")
     if not isinstance(dbname, str) or not dbname.strip():
-        raise ValueError("dbname должен быть непустой строкой")
+        raise ValueError("db troubles")
     if (
         not isinstance(connect_timeout, int)
         or isinstance(connect_timeout, bool)
         or not 1 <= connect_timeout <= 60
     ):
-        raise ValueError("connect_timeout должен быть целым числом от 1 до 60")
+        raise ValueError("connect_timeout from 1 to 60")
 
     return {
         "host": host,
@@ -68,7 +69,7 @@ def load_config(path: Path = CONFIG_PATH) -> DatabaseConfig:
 
 
 def read_credentials() -> tuple[str, str]:
-    """Запросить учётные данные, не отображая пароль на экране."""
+    """Запросить креды, не отображая пароль"""
     login = input("Login: ").strip()
     if not LOGIN_PATTERN.fullmatch(login):
         raise ValueError(
@@ -84,8 +85,8 @@ def read_credentials() -> tuple[str, str]:
 def query_server_version(
     config: DatabaseConfig, login: str, password: str
 ) -> str:
-    """Подключиться с раздельными параметрами и выполнить заданный запрос."""
-    with psycopg.connect(
+    """Подключиться с раздельными параметрами и выполнить запрос."""
+    with psycopg.connect( 
         host=config["host"],
         port=config["port"],
         dbname=config["dbname"],
@@ -94,6 +95,7 @@ def query_server_version(
         connect_timeout=config["connect_timeout"],
     ) as connection:
         with connection.cursor() as cursor:
+            """Сам запрос SELECT VERSION();"""
             cursor.execute(sql.SQL("SELECT VERSION();"))
             row = cursor.fetchone()
 

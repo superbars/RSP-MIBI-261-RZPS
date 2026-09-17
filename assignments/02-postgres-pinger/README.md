@@ -47,3 +47,28 @@ docker build --tag rsp-pinger:1.0.0 app
 docker image inspect rsp-pinger:1.0.0
 ```
 
+## Проверка по заданию
+
+Запуск с укороченным интервалом
+
+```bash
+POLL_INTERVAL_SECONDS=10 docker compose up --build --detach --wait
+```
+
+Затем стопаем базу и рестар pinger, чтобы первая проверка была неуспешной:
+
+```bash
+docker compose stop postgres
+docker compose restart pinger
+docker compose logs --follow pinger
+```
+
+Затем:
+
+```bash
+docker compose start postgres
+```
+
+Итог: pinger не завершается после ошибки
+
+```

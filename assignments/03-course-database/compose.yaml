@@ -1,12 +1,12 @@
 services:
-  postgres:
-    image: rsp-postgres:18
+  db:
+    image: rsp-courses-db:18
     build:
       context: ./db
     env_file:
       - ./.env
     environment:
-      POSTGRES_DB: rsp
+      POSTGRES_DB: rsp_courses
       POSTGRES_USER: postgres
       POSTGRES_INITDB_ARGS: >-
         --encoding=UTF8
@@ -16,29 +16,26 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d rsp"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d rsp_courses"]
       interval: 2s
       timeout: 3s
-      retries: 15
+      retries: 20
     restart: unless-stopped
 
-  pinger:
-    image: rsp-pinger:1.0.0
+  app:
+    image: rsp-courses-app:1.0.0
     build:
       context: ./app
-    env_file:
-      - ./.env
     environment:
-      POLL_INTERVAL_SECONDS: ${POLL_INTERVAL_SECONDS:-300}
-      # Pinger не должен получать пароль администратора БД из общего env-файла.
-      POSTGRES_PASSWORD: ""
+      LOG_FILE: ${LOG_FILE:-/logs/course-app.log}
     depends_on:
-      postgres:
+      db:
         condition: service_healthy
+    stdin_open: true
+    tty: true
     volumes:
-      - pinger-logs:/logs
-    restart: unless-stopped
+      - app-logs:/logs
 
 volumes:
   postgres-data:
-  pinger-logs:
+  app-logs:

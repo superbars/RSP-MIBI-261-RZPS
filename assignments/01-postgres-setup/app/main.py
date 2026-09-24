@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import getpass
 import re
 import sys
@@ -8,8 +10,6 @@ from typing import TypedDict
 
 import psycopg # For connetction to DB 
 from psycopg import sql
-
-from __future__ import annotations
 
 
 class DatabaseConfig(TypedDict):

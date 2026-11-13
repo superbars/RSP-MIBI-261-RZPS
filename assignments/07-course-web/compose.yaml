@@ -1,0 +1,37 @@
+services:
+  db:
+    image: rsp-courses-db:18
+    build:
+      context: ./db
+    env_file:
+      - ./.env
+    environment:
+      POSTGRES_DB: rsp_courses
+      POSTGRES_USER: postgres
+      POSTGRES_INITDB_ARGS: >-
+        --encoding=UTF8
+        --locale=ru_RU.UTF-8
+        --auth-host=scram-sha-256
+        --auth-local=scram-sha-256
+    volumes:
+      - postgres-data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d rsp_courses"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+
+  web:
+    image: rsp-courses-web:1.0.0
+    build:
+      context: ./app
+    environment:
+      FLASK_SECRET_KEY: ${FLASK_SECRET_KEY}
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:${WEB_PORT:-8080}:8080"
+
+volumes:
+  postgres-data:

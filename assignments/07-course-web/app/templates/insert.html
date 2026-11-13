@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Добавление{% endblock %}
+{% block content %}
+  <p class="eyebrow">INSERT</p>
+  <h1>Добавление строки</h1>
+
+  <form method="get" class="table-picker">
+    <label>
+      Таблица
+      <select name="table" onchange="this.form.submit()">
+        {% for table in tables %}
+          <option value="{{ table }}" {% if table == selected_table %}selected{% endif %}>{{ table }}</option>
+        {% endfor %}
+      </select>
+    </label>
+  </form>
+
+  <form method="post" class="panel form-grid">
+    <input type="hidden" name="table" value="{{ selected_table }}">
+    {% for column in table_info.insertable %}
+      <label>
+        {{ column }}
+        <input name="{{ column }}" {% if not (selected_table == 'enrollments' and column == 'grade') %}required{% endif %}>
+      </label>
+    {% endfor %}
+    <button type="submit">Добавить строку</button>
+  </form>
+
+  {% include "_current_rows.html" %}
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Обновление записи{% endblock %}
+{% block content %}
+  <p class="eyebrow">UPDATE по ID</p>
+  <h1>Обновление одной записи</h1>
+
+  <form method="get" class="table-picker">
+    <label>
+      Таблица
+      <select name="table" onchange="this.form.submit()">
+        {% for table in tables %}
+          <option value="{{ table }}" {% if table == selected_table %}selected{% endif %}>{{ table }}</option>
+        {% endfor %}
+      </select>
+    </label>
+  </form>
+
+  <form method="post" class="panel form-grid">
+    <input type="hidden" name="table" value="{{ selected_table }}">
+    <label>
+      ID строки
+      <input type="number" min="1" name="row_id" required>
+    </label>
+    <label>
+      Изменяемый столбец
+      <select name="column">
+        {% for column in table_info.editable %}<option value="{{ column }}">{{ column }}</option>{% endfor %}
+      </select>
+    </label>
+    <label>
+      Новое значение
+      <input name="new_value">
+    </label>
+    <button type="submit">Обновить запись</button>
+  </form>
+
+  {% include "_current_rows.html" %}
+{% endblock %}

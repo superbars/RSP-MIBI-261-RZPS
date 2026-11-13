@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Просмотр таблиц{% endblock %}
+{% block content %}
+  <p class="eyebrow">Чтение данных</p>
+  <h1>Просмотр таблиц</h1>
+
+  <form method="get" class="panel form-grid">
+    <label>
+      Таблица
+      <select name="table">
+        {% for table in tables %}
+          <option value="{{ table }}" {% if table == selected_table %}selected{% endif %}>{{ table }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <div class="filter-row">
+      <label>
+        Первый столбец
+        <select name="column1">
+          <option value="">Без фильтра</option>
+          {% for column in table_info.columns %}
+            <option value="{{ column }}" {% if request.args.get('column1') == column %}selected{% endif %}>{{ column }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>
+        Первое значение
+        <input name="value1" value="{{ request.args.get('value1', '') }}">
+      </label>
+    </div>
+
+    <div class="filter-row">
+      <label>
+        Второй столбец
+        <select name="column2">
+          <option value="">Без второго фильтра</option>
+          {% for column in table_info.columns %}
+            <option value="{{ column }}" {% if request.args.get('column2') == column %}selected{% endif %}>{{ column }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>
+        Второе значение
+        <input name="value2" value="{{ request.args.get('value2', '') }}">
+      </label>
+    </div>
+    <button type="submit">Показать</button>
+  </form>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          {% for column in table_info.columns %}<th>{{ column }}</th>{% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in rows %}
+          <tr>{% for column in table_info.columns %}<td>{{ row[column] if row[column] is not none else 'NULL' }}</td>{% endfor %}</tr>
+        {% else %}
+          <tr><td colspan="{{ table_info.columns|length }}">Строки не найдены</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

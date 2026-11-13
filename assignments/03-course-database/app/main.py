@@ -265,7 +265,7 @@ def insert_many(cursor: psycopg.Cursor) -> None:
     cursor.executemany(query, rows)
     report_success(f"Inserted new rows {count}")
 
-# 6.3.2
+# 6.3.2 (multiple_courses false) and 6.4.2 (multiple_courses true) (did not really get it)
 def create_student_with_courses(cursor: psycopg.Cursor, multiple_courses: bool) -> None:
     name = input("Name: ").strip()
     email = input("Email: ").strip()
@@ -368,7 +368,7 @@ def main() -> int:
                         elif choice == "9":
                             create_student_with_courses(cursor, True)
                         else:
-                            print("Нет такого пункта", file=sys.stderr)
+                            print("No such num", file=sys.stderr)
             except ValueError as error:
                 print(f"INPUT ERROR: {error}", file=sys.stderr)
                 raw_log("INPUT ERROR " + repr(error))

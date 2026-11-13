@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Обновить мнооооого значений{% endblock %}
+{% block content %}
+  <p class="eyebrow">UPDATE WHERE IN</p>
+  <h1>Обновить мнооооого значений</h1>
+  <p class="muted">Значения фильтра вводятся через запятую и передаются в SQL отдельно от текста запроса.</p>
+
+  <form method="get" class="table-picker">
+    <label>
+      Таблица
+      <select name="table" onchange="this.form.submit()">
+        {% for table in tables %}
+          <option value="{{ table }}" {% if table == selected_table %}selected{% endif %}>{{ table }}</option>
+        {% endfor %}
+      </select>
+    </label>
+  </form>
+
+  <form method="post" class="panel form-grid">
+    <input type="hidden" name="table" value="{{ selected_table }}">
+    <label>
+      Изменяемый столбец
+      <select name="target_column">
+        {% for column in table_info.editable %}<option value="{{ column }}">{{ column }}</option>{% endfor %}
+      </select>
+    </label>
+    <label>
+      Новое общее значение
+      <input name="new_value">
+    </label>
+    <label>
+      Столбец фильтра
+      <select name="filter_column">
+        {% for column in table_info.columns %}<option value="{{ column }}">{{ column }}</option>{% endfor %}
+      </select>
+    </label>
+    <label>
+      Значения фильтра через запятую
+      <input name="filter_values" placeholder="1, 2, 3" required>
+    </label>
+    <button type="submit">Обновить строки</button>
+  </form>
+
+  {% include "_current_rows.html" %}
+{% endblock %}

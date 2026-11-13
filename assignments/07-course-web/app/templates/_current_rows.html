@@ -1,0 +1,20 @@
+<section class="current-rows">
+  <h2>Текущие записи: {{ selected_table }}</h2>
+  <p class="muted"></p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          {% for column in table_info.columns %}<th>{{ column }}</th>{% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in rows %}
+          <tr>{% for column in table_info.columns %}<td>{{ row[column] if row[column] is not none else 'NULL' }}</td>{% endfor %}</tr>
+        {% else %}
+          <tr><td colspan="{{ table_info.columns|length }}">Строки не найдены</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>

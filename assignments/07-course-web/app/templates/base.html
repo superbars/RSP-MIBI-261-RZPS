@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Курсы по АИАИ{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="{{ url_for('home') if current_user_session else url_for('login') }}">Курсы по АИАИ</a>
+    {% if current_user_session %}
+      <nav>
+        <a href="{{ url_for('home') }}">Главная</a>
+        <a href="{{ url_for('tables') }}">Просмотр</a>
+        <a href="{{ url_for('insert') }}">Добавление</a>
+        <a href="{{ url_for('update') }}">Обновление</a>
+        <a href="{{ url_for('update_many') }}">Обновить мнооооого значений</a>
+      </nav>
+      <form method="post" action="{{ url_for('logout') }}" class="logout-form">
+        <button class="link-button" type="submit">Выйти</button>
+      </form>
+    {% endif %}
+  </header>
+
+  <main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <p class="message {{ category }}">{{ message }}</p>
+      {% endfor %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

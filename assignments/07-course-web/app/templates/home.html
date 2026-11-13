@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+  <p class="eyebrow">Подключение выполнено</p>
+  <h1>Главная страница</h1>
+  <p class="lead">Пользователь PostgreSQL: <strong>{{ user_session.username }}</strong></p>
+
+  <div class="card-grid">
+    <a class="action-card" href="{{ url_for('tables') }}">
+      <h2>Просмотр таблиц</h2>
+      <p>Показать все строки или применить один либо два фильтра.</p>
+    </a>
+    <a class="action-card" href="{{ url_for('insert') }}">
+      <h2>Добавление</h2>
+      <p>Добавить одну строку в выбранную таблицу.</p>
+    </a>
+    <a class="action-card" href="{{ url_for('update') }}">
+      <h2>Обновление записи</h2>
+      <p>Изменить выбранный столбец строки по ID.</p>
+    </a>
+    <a class="action-card" href="{{ url_for('update_many') }}">
+      <h2>Обновить мнооооого значений</h2>
+      <p>Изменить несколько строк по списку однородных значений.</p>
+    </a>
+  </div>
+{% endblock %}

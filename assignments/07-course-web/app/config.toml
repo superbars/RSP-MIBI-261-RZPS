@@ -1,0 +1,5 @@
+host = "db"
+port = 5432
+dbname = "rsp_courses"
+connect_timeout = 5
+statement_timeout_ms = 5000

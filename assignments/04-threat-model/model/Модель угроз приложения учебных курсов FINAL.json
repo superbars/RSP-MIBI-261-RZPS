@@ -1,0 +1,1363 @@
+{
+  "version": "2.6.2",
+  "summary": {
+    "title": "Модель угроз приложения учебных курсов",
+    "owner": "Ромашов Сергей Петрович",
+    "description": "Модель угроз интерактивного Python-приложения для работы с базой данных учебных курсов PostgreSQL. Приложение и СУБД выполняются в отдельных Docker-контейнерах и взаимодействуют через внутреннюю сеть Docker.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "Основной поток данных",
+        "diagramType": "STRIDE",
+        "placeholder": "Потоки данных между пользователем, Python-приложением и PostgreSQL",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": [
+          {
+            "position": {
+              "x": 260,
+              "y": 65
+            },
+            "size": {
+              "width": 210,
+              "height": 130
+            },
+            "attrs": {
+              "label": {
+                "text": "Контейнер приложения"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "id": "3c652001-b964-4b95-a75c-7e031e85ddf8",
+            "zIndex": -1,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Контейнер приложения",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false,
+              "crossingFlows": [
+                "8bd55443-28c2-4cc8-9f54-69e7aa208053",
+                "8c27eb09-3e8c-4c7a-8a87-d166b8366331",
+                "5548e699-20e3-4900-96b7-2eca142e2124",
+                "d2724326-4e0c-4c11-b0a3-01dc245eb413",
+                "cf396725-3c1b-4f3c-ae4a-937c3c417e71"
+              ],
+              "containedElements": [
+                "49df4f4e-2b7e-404a-93ba-6995b4d03351"
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 675,
+              "y": 70
+            },
+            "size": {
+              "width": 200,
+              "height": 120
+            },
+            "attrs": {
+              "label": {
+                "text": "Контейнер PostgreSQL"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "id": "e280c0d4-5e94-437e-8053-58739bbb593e",
+            "zIndex": -1,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Контейнер PostgreSQL",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false,
+              "crossingFlows": [
+                "5548e699-20e3-4900-96b7-2eca142e2124",
+                "d2724326-4e0c-4c11-b0a3-01dc245eb413",
+                "4497e130-a9a2-4521-a81e-db735694bfa7",
+                "80e1954a-e38d-426e-b087-6ac772c67ea9"
+              ],
+              "containedElements": [
+                "e4262081-ef21-4419-af72-0a9f37ad73ac"
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": -130,
+              "y": 110
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Пользователь"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "4e4dab90-e992-4920-89c1-182e7dacc5a6"
+                },
+                {
+                  "group": "right",
+                  "id": "d35d7795-98d0-4348-ba02-3f58d88974c0"
+                },
+                {
+                  "group": "bottom",
+                  "id": "47a28f86-096e-4588-a091-d859c07a72a5"
+                },
+                {
+                  "group": "left",
+                  "id": "b2611969-cf93-443d-8d57-86c795c37553"
+                }
+              ]
+            },
+            "id": "82f964e2-abdd-4b46-b214-f8965a6b5ac2",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Actor",
+              "name": "Пользователь",
+              "description": "Пользователь интерактивного приложения, вводящий логин, пароль, команды и значения для выполнения операций с базой данных.",
+              "isTrustBoundary": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "providesAuthentication": false,
+              "threats": [
+                {
+                  "id": "0c14c7c0-470e-4e08-ad02-6ae91369be5f",
+                  "title": "Подмена пользователя с использованием похищенных учётных данных",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Злоумышленник может получить логин и пароль пользователя course_user и выполнить операции с базой данных от имени легитимного пользователя.",
+                  "mitigation": "Использовать уникальные учётные данные, хранить пароль вне исходного кода, применять SCRAM-SHA-256, ограничить права пользователя БД и регулярно менять пароль.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": ""
+                },
+                {
+                  "id": "2a72994b-8fad-40aa-b136-24463a1cbf90",
+                  "title": "Невозможность установить автора изменений",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Несколько операторов могут работать под общей учётной записью course_user. Приложение не записывает, кто и когда выполнил операцию, поэтому установить автора изменения по журналу невозможно.",
+                  "mitigation": "Использовать отдельные учётные записи, записывать пользователя, тип операции, время и результат выполнения, а также защищать журнал от изменения.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 2,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "repudiation": 1
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 300,
+              "y": 100
+            },
+            "size": {
+              "width": 130,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Python-приложение"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "fb5cb14e-ce78-4bc0-a84e-49f56367a527"
+                },
+                {
+                  "group": "right",
+                  "id": "8851c4df-33ca-463e-8aa1-a4030d3647c2"
+                },
+                {
+                  "group": "bottom",
+                  "id": "32279ee7-e74b-4fec-83fa-41ca5155d27a"
+                },
+                {
+                  "group": "left",
+                  "id": "00a9b3f5-ab46-4e72-95e8-5a89a8452105"
+                }
+              ]
+            },
+            "id": "49df4f4e-2b7e-404a-93ba-6995b4d03351",
+            "zIndex": 2,
+            "data": {
+              "type": "tm.Process",
+              "name": "Python-приложение",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "866efec2-1df2-4eef-8868-5752e20e1654",
+                  "title": "Внедрение SQL-кода через пользовательский ввод",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Злоумышленник может ввести фрагмент SQL-кода вместо названия таблицы, столбца или обычного значения, чтобы прочитать либо изменить данные способом, не предусмотренным приложением.",
+                  "mitigation": "Проверять названия таблиц и колонок по белому списку TABLES, использовать sql.Identifier для идентификаторов и передавать значения отдельно через параметризованные плейсхолдеры %s.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 3,
+                  "score": ""
+                },
+                {
+                  "id": "f327bee5-b55b-4e39-916b-53bc418a7b47",
+                  "title": "Исчерпание ресурсов Python-приложения",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Пользователь может запросить вставку слишком большого количества строк или многократно запускать операции. Это может вызвать чрезмерное потребление процессорного времени и памяти и привести к зависанию приложения.",
+                  "mitigation": "Ограничить максимальное количество строк одной операции, ограничить число попыток, использовать connect_timeout и statement_timeout, контролировать потребление ресурсов контейнера.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": ""
+                },
+                {
+                  "id": "0d8abad8-40aa-464b-a342-d40e608cef54",
+                  "title": "Получение повышенных прав через приложение",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "Используя уязвимость приложения или одной из его зависимостей, злоумышленник может выполнить код внутри контейнера и получить доступ к ресурсам с более высокими правами.",
+                  "mitigation": "Запускать приложение от непривилегированного пользователя courseapp, не выдавать контейнеру privileged, регулярно обновлять зависимости и предоставлять пользователю только необходимые права.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 5,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 2,
+                "tampering": 2,
+                "repudiation": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 1,
+                "elevationOfPrivilege": 1
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 710,
+              "y": 100
+            },
+            "size": {
+              "width": 110,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "PostgreSQL"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "fb5cb14e-ce78-4bc0-a84e-49f56367a527"
+                },
+                {
+                  "group": "right",
+                  "id": "8851c4df-33ca-463e-8aa1-a4030d3647c2"
+                },
+                {
+                  "group": "bottom",
+                  "id": "32279ee7-e74b-4fec-83fa-41ca5155d27a"
+                },
+                {
+                  "group": "left",
+                  "id": "00a9b3f5-ab46-4e72-95e8-5a89a8452105"
+                }
+              ]
+            },
+            "id": "e4262081-ef21-4419-af72-0a9f37ad73ac",
+            "zIndex": 3,
+            "data": {
+              "type": "tm.Process",
+              "name": "PostgreSQL",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "40031803-888c-40cb-a0a7-5089091b048a",
+                  "title": "Подмена сервера PostgreSQL",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Злоумышленник, получивший доступ к внутренней сети Docker или настройкам DNS, может попытаться выдать свой сервис за PostgreSQL и получить передаваемые приложением учётные данные и запросы.",
+                  "mitigation": "Изолировать внутреннюю сеть Docker, не публиковать порт PostgreSQL наружу, использовать проверку сертификата и TLS при работе в недоверенной сети, ограничить подключение только необходимыми сервисами.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": ""
+                },
+                {
+                  "id": "c5b65c21-776f-42e5-95d2-4aede0a32cc6",
+                  "title": "Несанкционированное изменение данных через учётную запись приложения",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Получив логин и пароль роли course_user, злоумышленник может подключиться к PostgreSQL и изменить сведения о преподавателях, курсах, студентах, записях на курсы и оценках в пределах прав этой роли.",
+                  "mitigation": "Хранить пароль вне репозитория, регулярно менять учётные данные, не публиковать порт PostgreSQL, применять SCRAM-SHA-256, выдавать минимальные права и вести аудит изменений.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 7,
+                  "score": ""
+                },
+                {
+                  "id": "dd57700d-b915-4d94-ab47-b4159da8dc35",
+                  "title": "Исчерпание ресурсов PostgreSQL",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Большое количество одновременных подключений, массовых операций или ресурсоёмких запросов может исчерпать доступные PostgreSQL ресурсы и сделать базу данных недоступной.",
+                  "mitigation": "Использовать statement_timeout и connect_timeout, ограничить ресурсы контейнера, настроить максимальное количество подключений, ограничить размер массовых операций и контролировать состояние базы через healthcheck.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 8,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 2,
+                "tampering": 1,
+                "repudiation": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 1,
+                "elevationOfPrivilege": 0
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 305,
+              "y": 280
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Технический журнал"
+              },
+              "topLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "e165b618-2ff6-4fe0-ad9e-5d63b00b2fe8"
+                },
+                {
+                  "group": "right",
+                  "id": "27b7a28f-da0d-42da-99ee-889d31a8a2b0"
+                },
+                {
+                  "group": "bottom",
+                  "id": "1838e03d-05f7-4b10-9182-f37e82cae17a"
+                },
+                {
+                  "group": "left",
+                  "id": "7ef3622a-0600-4445-9167-cc2767b0469c"
+                }
+              ]
+            },
+            "id": "f9d06102-29ae-48ab-9b6b-c419180be32e",
+            "zIndex": 4,
+            "data": {
+              "type": "tm.Store",
+              "name": "Технический журнал",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "814d0520-8cb3-4614-a5fe-a35ae8a46eb7",
+                  "title": "Раскрытие технических сведений из журнала",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "В техническом журнале могут находиться подробные сообщения об ошибках, трассировка стека, имена файлов и функций, а также сведения о работе с PostgreSQL. Доступ к журналу позволит узнать внутреннее устройство приложения и упростит дальнейшую атаку.",
+                  "mitigation": "Ограничить доступ к Docker volume app-logs, не записывать пароли и другие секреты, очищать чувствительные данные из сообщений и предоставлять технический журнал только администратору.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 11,
+                  "score": ""
+                },
+                {
+                  "id": "72480a46-2be1-4fab-b16c-e5fdbeccf0d6",
+                  "title": "Изменение или удаление технического журнала",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Получив доступ к Docker-тому app-logs, злоумышленник может изменить или удалить записи журнала, чтобы скрыть выполненные операции и произошедшие ошибки.",
+                  "mitigation": "Ограничить права записи, использовать отдельную систему централизованного журналирования, контролировать целостность журнала и выполнять его резервное копирование.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 12,
+                  "score": ""
+                },
+                {
+                  "id": "126995cc-6b78-49f2-af5a-0101fef59812",
+                  "title": "Переполнение хранилища технического журнала",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Если размер журнала не ограничен и ротация не настроена, многократные ошибки могут заполнить Docker-том app-logs и нарушить работу приложения или хостовой системы.",
+                  "mitigation": "Настроить ротацию и максимальный размер журнала, ограничить размер Docker volume, контролировать свободное место и частоту повторяющихся сообщений.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 13,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "repudiation": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 1
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 710,
+              "y": 340
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "База данных rsp_courses"
+              },
+              "topLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "e165b618-2ff6-4fe0-ad9e-5d63b00b2fe8"
+                },
+                {
+                  "group": "right",
+                  "id": "27b7a28f-da0d-42da-99ee-889d31a8a2b0"
+                },
+                {
+                  "group": "bottom",
+                  "id": "1838e03d-05f7-4b10-9182-f37e82cae17a"
+                },
+                {
+                  "group": "left",
+                  "id": "7ef3622a-0600-4445-9167-cc2767b0469c"
+                }
+              ]
+            },
+            "id": "2a012f93-6839-477b-9b56-16e63a39d689",
+            "zIndex": 5,
+            "data": {
+              "type": "tm.Store",
+              "name": "База данных rsp_courses",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "ab653782-baff-428d-98cf-55e957f32e08",
+                  "title": "Изменение или повреждение файлов базы данных",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Получив доступ к Docker-тому postgres-data или хостовой системе, злоумышленник может изменить, повредить или удалить файлы PostgreSQL и тем самым нарушить целостность данных.",
+                  "mitigation": "Ограничить доступ к хостовой системе и Docker daemon, использовать права доступа к volume, выполнять резервное копирование и контролировать целостность данных.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 9,
+                  "score": ""
+                },
+                {
+                  "id": "3d118543-bf00-4a8e-98e8-dfa69773198a",
+                  "title": "Несанкционированный доступ к содержимому базы данных",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Получив доступ к PostgreSQL, Docker-тому или резервной копии, злоумышленник может прочитать сведения о преподавателях, студентах, курсах и оценках.",
+                  "mitigation": "Ограничить доступ к PostgreSQL и Docker volume, не публиковать порт базы наружу, применять отдельного пользователя с минимальными правами, защищать резервные копии и использовать шифрование при необходимости.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 10,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "repudiation": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0
+              }
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Логин, пароль, команды",
+              "description": "Пользователь вводит учётные данные для подключения, выбирает операцию и указывает необходимые значения.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "5bf120a7-ae70-432e-8171-e93f36cdb995",
+                  "title": "Компрометация логина и пароля пользователя",
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Логин и пароль пользователя могут подсмотреть на экране, перехватить с помощью вредоносной программы на хосте или извлечь из памяти процесса во время подключения к PostgreSQL.",
+                  "mitigation": "Использовать getpass для скрытого ввода пароля, не записывать пароль в журнал, ограничить доступ к хостовой системе и не хранить рабочие учётные данные в исходном коде.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 14,
+                  "score": ""
+                }
+              ],
+              "trustBoundaryIds": [
+                "3c652001-b964-4b95-a75c-7e031e85ddf8"
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0
+              }
+            },
+            "labels": [
+              "Логин, пароль, команды"
+            ],
+            "id": "8bd55443-28c2-4cc8-9f54-69e7aa208053",
+            "source": {
+              "cell": "82f964e2-abdd-4b46-b214-f8965a6b5ac2",
+              "port": "d35d7795-98d0-4348-ba02-3f58d88974c0"
+            },
+            "target": {
+              "cell": "49df4f4e-2b7e-404a-93ba-6995b4d03351",
+              "port": "00a9b3f5-ab46-4e72-95e8-5a89a8452105"
+            },
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Результаты и сообщения об ошибках",
+              "description": "Приложение выводит результаты запросов и понятные пользователю сообщения об ошибках.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": [
+                "3c652001-b964-4b95-a75c-7e031e85ddf8"
+              ]
+            },
+            "labels": [
+              "Результаты и сообщения об ошибках"
+            ],
+            "id": "8c27eb09-3e8c-4c7a-8a87-d166b8366331",
+            "source": {
+              "cell": "49df4f4e-2b7e-404a-93ba-6995b4d03351",
+              "port": "fb5cb14e-ce78-4bc0-a84e-49f56367a527"
+            },
+            "target": {
+              "cell": "82f964e2-abdd-4b46-b214-f8965a6b5ac2",
+              "port": "4e4dab90-e992-4920-89c1-182e7dacc5a6"
+            },
+            "vertices": [
+              {
+                "x": 270,
+                "y": 60
+              },
+              {
+                "x": 130,
+                "y": 40
+              },
+              {
+                "x": 30,
+                "y": 40
+              },
+              {
+                "x": -50,
+                "y": 60
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "SQL-запросы и параметры",
+              "description": "Приложение передаёт параметризованные SQL-запросы через внутреннюю сеть Docker.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "d670df8c-2379-4e89-abec-18604efad6b0",
+                  "title": "Изменение SQL-запросов при передаче",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Злоумышленник, получивший доступ к внутренней сети Docker, может попытаться изменить SQL-запросы или их параметры при передаче между приложением и PostgreSQL.",
+                  "mitigation": "Изолировать Docker-сеть, не подключать к ней посторонние контейнеры, не публиковать порт PostgreSQL наружу и применять TLS с проверкой сертификата при работе в недоверенной сети.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 15,
+                  "score": ""
+                }
+              ],
+              "trustBoundaryIds": [
+                "3c652001-b964-4b95-a75c-7e031e85ddf8",
+                "e280c0d4-5e94-437e-8053-58739bbb593e"
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 0,
+                "denialOfService": 0
+              }
+            },
+            "labels": [
+              "SQL-запросы и параметры"
+            ],
+            "id": "5548e699-20e3-4900-96b7-2eca142e2124",
+            "source": {
+              "cell": "49df4f4e-2b7e-404a-93ba-6995b4d03351",
+              "port": "8851c4df-33ca-463e-8aa1-a4030d3647c2"
+            },
+            "target": {
+              "cell": "e4262081-ef21-4419-af72-0a9f37ad73ac",
+              "port": "00a9b3f5-ab46-4e72-95e8-5a89a8452105"
+            },
+            "vertices": [
+              {
+                "x": 520,
+                "y": 190
+              },
+              {
+                "x": 560,
+                "y": 190
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Результаты запросов и ошибки БД",
+              "description": "PostgreSQL возвращает найденные строки, количество изменений или ошибку.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "7bd56b9a-7ef8-489a-9b6d-82409c5bf7c2",
+                  "title": "Перехват ответов PostgreSQL",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Если соединение не защищено с помощью TLS, злоумышленник с доступом к внутренней сети Docker может перехватить ответы PostgreSQL со сведениями о преподавателях, студентах, курсах и оценках.",
+                  "mitigation": "Изолировать сеть Docker, ограничить доступ к Docker daemon, не публиковать порт PostgreSQL и использовать TLS для защиты сетевого соединения.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 16,
+                  "score": ""
+                }
+              ],
+              "trustBoundaryIds": [
+                "3c652001-b964-4b95-a75c-7e031e85ddf8",
+                "e280c0d4-5e94-437e-8053-58739bbb593e"
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0
+              }
+            },
+            "labels": [
+              "Результаты запросов и ошибки БД"
+            ],
+            "id": "d2724326-4e0c-4c11-b0a3-01dc245eb413",
+            "source": {
+              "cell": "e4262081-ef21-4419-af72-0a9f37ad73ac",
+              "port": "00a9b3f5-ab46-4e72-95e8-5a89a8452105"
+            },
+            "target": {
+              "cell": "49df4f4e-2b7e-404a-93ba-6995b4d03351",
+              "port": "8851c4df-33ca-463e-8aa1-a4030d3647c2"
+            },
+            "vertices": [
+              {
+                "x": 570,
+                "y": 100
+              },
+              {
+                "x": 550,
+                "y": 100
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Чтение и изменение данных",
+              "description": "PostgreSQL читает и изменяет данные преподавателей, курсов, студентов и записей на курсы.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": [
+                "e280c0d4-5e94-437e-8053-58739bbb593e"
+              ]
+            },
+            "labels": [
+              "Чтение и изменение данных"
+            ],
+            "id": "4497e130-a9a2-4521-a81e-db735694bfa7",
+            "source": {
+              "cell": "e4262081-ef21-4419-af72-0a9f37ad73ac",
+              "port": "32279ee7-e74b-4fec-83fa-41ca5155d27a"
+            },
+            "target": {
+              "cell": "2a012f93-6839-477b-9b56-16e63a39d689",
+              "port": "e165b618-2ff6-4fe0-ad9e-5d63b00b2fe8"
+            },
+            "vertices": [
+              {
+                "x": 650,
+                "y": 250
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Сохранённые данные",
+              "description": "Хранилище возвращает PostgreSQL сохранённые данные учебных курсов.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": [
+                "e280c0d4-5e94-437e-8053-58739bbb593e"
+              ]
+            },
+            "labels": [
+              "Сохранённые данные"
+            ],
+            "id": "80e1954a-e38d-426e-b087-6ac772c67ea9",
+            "source": {
+              "cell": "2a012f93-6839-477b-9b56-16e63a39d689",
+              "port": "e165b618-2ff6-4fe0-ad9e-5d63b00b2fe8"
+            },
+            "target": {
+              "cell": "e4262081-ef21-4419-af72-0a9f37ad73ac",
+              "port": "32279ee7-e74b-4fec-83fa-41ca5155d27a"
+            },
+            "vertices": [
+              {
+                "x": 900,
+                "y": 260
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Технические сообщения",
+              "description": "Приложение записывает дату и время события, подробные сведения об ошибке и трассировку стека.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": [
+                "3c652001-b964-4b95-a75c-7e031e85ddf8"
+              ]
+            },
+            "labels": [
+              "Технические сообщения"
+            ],
+            "id": "cf396725-3c1b-4f3c-ae4a-937c3c417e71",
+            "source": {
+              "cell": "49df4f4e-2b7e-404a-93ba-6995b4d03351",
+              "port": "32279ee7-e74b-4fec-83fa-41ca5155d27a"
+            },
+            "target": {
+              "cell": "f9d06102-29ae-48ab-9b6b-c419180be32e",
+              "port": "e165b618-2ff6-4fe0-ad9e-5d63b00b2fe8"
+            },
+            "vertices": []
+          }
+        ],
+        "description": "Потоки данных между пользователем, Python и PostgreSQL"
+      }
+    ],
+    "diagramTop": 1,
+    "reviewer": "Горбунов Иван Викторович",
+    "threatTop": 17
+  }
+}
